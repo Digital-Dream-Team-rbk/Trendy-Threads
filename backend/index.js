@@ -1,13 +1,10 @@
-const express = require("express");
-const app = express();
+const app = require('./app');
 
-const cors =require ('cors');
-app.use(cors());
-app.use(express.json());
+const db = require('../backend/connection');
+
+//Setting the port and listening for connections
 const port = 3000;
 
-
-app.listen(port,(err)=>{
-    if(err) console.log(`server off ligne`)
-    else console.log(`Server on ligne on port:${port}`)
-    });
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+})
