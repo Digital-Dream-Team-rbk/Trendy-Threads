@@ -1,5 +1,3 @@
--- MySQL Workbench Forward Engineering
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -8,9 +6,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema Trendy
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema Trendy
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `Trendy` ;
 USE `Trendy` ;
 
@@ -22,7 +17,8 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`admin` (
   `adminname` VARCHAR(255) NOT NULL,
   `adminmail` VARCHAR(255) NOT NULL,
   `adminpw` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`adminid`));
+  PRIMARY KEY (`adminid`)
+);
 
 
 -- -----------------------------------------------------
@@ -37,9 +33,10 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
   `adminid` INT NOT NULL,
   PRIMARY KEY (`productid`),
   INDEX (`adminid` ASC) VISIBLE,
-  CONSTRAINT ``
+  CONSTRAINT `fk_products_admin`
     FOREIGN KEY (`adminid`)
-    REFERENCES `Trendy`.`admin` (`adminid`));
+    REFERENCES `Trendy`.`admin` (`adminid`)
+);
 
 
 -- -----------------------------------------------------
@@ -50,7 +47,8 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`users` (
   `username` VARCHAR(255) NOT NULL,
   `userpw` VARCHAR(255) NOT NULL,
   `useremail` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`userid`));
+  PRIMARY KEY (`userid`)
+);
 
 
 -- -----------------------------------------------------
@@ -61,15 +59,19 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`product_user` (
   `userid` INT NOT NULL,
   PRIMARY KEY (`productid`, `userid`),
   INDEX (`userid` ASC) VISIBLE,
-  CONSTRAINT ``
+  CONSTRAINT `fk_product_user_products`
     FOREIGN KEY (`productid`)
     REFERENCES `Trendy`.`products` (`productid`),
-  CONSTRAINT ``
+  CONSTRAINT `fk_product_user_users`
     FOREIGN KEY (`userid`)
-    REFERENCES `Trendy`.`users` (`userid`));
-
+    REFERENCES `Trendy`.`users` (`userid`)
+);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+<<<<<<< HEAD
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+=======
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+>>>>>>> e8adf629241cf6c1e59a9f719a5eaad4992900f3

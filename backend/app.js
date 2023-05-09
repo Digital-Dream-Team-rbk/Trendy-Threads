@@ -4,7 +4,7 @@ const app = express();
 const cors =require ('cors');
 app.use(cors());
 
-
+//create route  for admin
 const adminRoute = require('../backend/routes/admin.js');
 
 
@@ -12,7 +12,7 @@ const adminRoute = require('../backend/routes/admin.js');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use('/api/admin', adminRoute);
+app.use('/api/admin',adminRoute);
 
 
 module.exports = app; 
