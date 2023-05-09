@@ -19,9 +19,9 @@ USE `Trendy` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trendy`.`admin` (
   `adminid` INT NOT NULL AUTO_INCREMENT,
-  `adminname` VARCHAR(255) NULL DEFAULT NULL,
-  `adminmail` VARCHAR(255) NULL DEFAULT NULL,
-  `adminpw` VARCHAR(255) NULL DEFAULT NULL,
+  `adminname` VARCHAR(255) NOT NULL,
+  `adminmail` VARCHAR(255) NOT NULL,
+  `adminpw` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`adminid`));
 
 
@@ -30,11 +30,11 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`admin` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
   `productid` INT NOT NULL AUTO_INCREMENT,
-  `productname` VARCHAR(255) NULL DEFAULT NULL,
-  `productprice` DECIMAL(10,2) NULL DEFAULT NULL,
-  `productquantity` INT NULL DEFAULT NULL,
-  `productcategory` VARCHAR(255) NULL DEFAULT NULL,
-  `adminid` INT NULL DEFAULT NULL,
+  `productname` VARCHAR(255) NOT NULL,
+  `productprice` DECIMAL(10,2) NOT NULL,
+  `productquantity` INT NOT NULL,
+  `productcategory` VARCHAR(255) NOT NULL,
+  `adminid` INT NOT NULL,
   PRIMARY KEY (`productid`),
   INDEX (`adminid` ASC) VISIBLE,
   CONSTRAINT ``
@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trendy`.`users` (
   `userid` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(255) NULL DEFAULT NULL,
-  `userpw` VARCHAR(255) NULL DEFAULT NULL,
-  `useremail` VARCHAR(255) NULL DEFAULT NULL,
+  `username` VARCHAR(255) NOT NULL,
+  `userpw` VARCHAR(255) NOT NULL,
+  `useremail` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`userid`));
 
 
