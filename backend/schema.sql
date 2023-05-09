@@ -18,7 +18,7 @@ USE `Trendy` ;
 -- Table `Trendy`.`admin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trendy`.`admin` (
-  `adminid` INT NULL DEFAULT NULL,
+  `adminid` INT NOT NULL AUTO_INCREMENT,
   `adminname` VARCHAR(255) NULL DEFAULT NULL,
   `adminmail` VARCHAR(255) NULL DEFAULT NULL,
   `adminpw` VARCHAR(255) NULL DEFAULT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`admin` (
 -- Table `Trendy`.`products`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
-  `productid` INT NULL DEFAULT NULL,
+  `productid` INT NOT NULL AUTO_INCREMENT,
   `productname` VARCHAR(255) NULL DEFAULT NULL,
   `productprice` DECIMAL(10,2) NULL DEFAULT NULL,
   `productquantity` INT NULL DEFAULT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
 -- Table `Trendy`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trendy`.`users` (
-  `userid` INT NULL DEFAULT NULL,
+  `userid` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(255) NULL DEFAULT NULL,
   `userpw` VARCHAR(255) NULL DEFAULT NULL,
   `useremail` VARCHAR(255) NULL DEFAULT NULL,
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`users` (
 -- Table `Trendy`.`product_user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Trendy`.`product_user` (
-  `productid` INT NULL DEFAULT NULL,
-  `userid` INT NULL DEFAULT NULL,
+  `productid` INT NOT NULL,
+  `userid` INT NOT NULL,
   PRIMARY KEY (`productid`, `userid`),
   INDEX (`userid` ASC) VISIBLE,
   CONSTRAINT ``
@@ -72,4 +72,3 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`product_user` (
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
