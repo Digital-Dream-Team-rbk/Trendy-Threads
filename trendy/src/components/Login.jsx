@@ -1,28 +1,36 @@
-import React, { useState } from 'react'
-import axios from "axios"
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const Login=()=> {
-  const[name,setName]=useState("")
-  const[password,setPassword]=useState("")
-  const[email,setEmail]=useState("")
-  const handelSubmit=()=>{
-    axios.post("http://localhost:3000/api/users",{
-      username:name,
-      useremail:email,
-      userpw:password
-    })
-    .then(suc=>{console.log(suc)})
-    .catch(err=>console.log(err))
-      }
-      console.log(email)
-  return(
-    <div className='sign'>
-      <h3>Sign up</h3>
-        <input type="text" className='inp' placeholder='User Name'onChange={e=>setName(e.target.value)}/><br />
-        <input type="password" className='inp' placeholder='User Password'onChange={e=>setPassword(e.target.value)}/><br />
-        <input type="email" className='inp' placeholder='User E-mail'onChange={e=>setEmail(e.target.value)}/><br />
-        <input type="button" className='btn' value="submit" onClick={handelSubmit}/>
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+//   const[tokken,setTokken]=useState("")
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/api/users/login', {
+        useremail: email,
+        userpw: password
+      });
+
+      const token = response.data.token;
+    //   setTokken(token)
+     
+
+      console.log('Authentication successful');
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  return (
+    <div className="login-form">
+      <h3>Login</h3>
+      <input  type="email" className='inp' placeholder="Email" value={email}  onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" className='inp' placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input type="button" className='btn' value="submit" onClick={handleLogin}/>
     </div>
-  )
-}
-export default Login
+  );
+};
+
+export default Login;
