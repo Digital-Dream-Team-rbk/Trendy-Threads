@@ -22,17 +22,28 @@ module.exports={
     });
   },
   
-    changeAdmin:function(cb,id,admin) {
-      const sql = `UPDATE admin SET ? WHERE adminid=${id} `
-      con.query(sql,admin,(err,rslt)=>{
-        cb(err,rslt)
+  changeAdmin:function(id,admin) {
+      return new Promise((resolve,reject)=>{
+        const sql = `UPDATE admin SET ? WHERE adminid=${id} `
+        con.query(sql,admin,(err,rslt)=>{
+        if(err){
+          reject(err)
+        }
+        else resolve(rslt)
       })
-    },
-    deleteAdmin:function(cb,id) {
-      const sql=`DELETE FROM admin WHERE id=${id}`
-    connection.query(sql,(err,res)=>{
-        cb(err,res)
-      })
-    }
+      }
+       )
+  },
 
+    deleteAdmin:function(id){
+    return new Promise((resolve,reject)=>{
+      const sql=`DELETE FROM admin WHERE id=${id}`
+      con.query(sql,admin,(err,rslt)=>{
+      if(err){
+        reject(err)
+      }
+      else resolve(rslt)
+    })
+    }
+  )}
 }
