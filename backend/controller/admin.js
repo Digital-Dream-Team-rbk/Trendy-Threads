@@ -13,12 +13,13 @@ module.exports={
       },
             
     //------------------------------- sign up admin-----------------------------------//     
-    signUpAdmin: async function (req, res) {
-        const { adminname, adminmail, adminpw } = req.body
-        const bool = await admin.getOne(adminmail)
+    signUpAdmin: async (req, res)=> {
+       
         try {
+            const { adminname, adminmail, adminpw } = req.body
+            const bool = await admin.getOne(adminmail)
           if (bool.length!==0) {
-            res.status(409).send('admin exists') 
+            res.status(409).send('admin exists')
           }
            else {
             const hashed = await bcrypt.hash(adminpw, 10);
@@ -28,10 +29,11 @@ module.exports={
               adminpw: hashed
             }
             await admin.createAdmin(newAdmin)
-            res.status(201).send(result)
+            res.status(201).send("admin created")
           }
         }
         catch (err) {
+            console.log("from catch")
           res.status(500).send(err)
         }
     },
@@ -60,7 +62,7 @@ module.exports={
     },
     //--------------------------update admin info-------------------
     updateAdmin:function(req,res){
-      admin.changeAdmin(req.params.id,req.body)
+      admin.changeAdmin(req.params.adminid,req.body)
       .then((result) => {
         res.send(result);
       })
@@ -70,7 +72,7 @@ module.exports={
     },
      //--------------------------delete admin info-------------------
     deleteAdmin:function(req,res){
-      admin.deleteAdmin(req.params.id)
+      admin.deleteAdmin(req.params.adminid)
       .then((result) => {
         res.send(result);
       })

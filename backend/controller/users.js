@@ -14,7 +14,7 @@ const getUsers=(req,res)=>{
 };
 const postOne=async (req,res)=>{
       try {
-        const dbUser=getOneUser(req.body.useremail)
+        const dbUser= await getOneUser(req.body.useremail)
         if(dbUser.length > 0){
             res.status(409).send("user already exists")
             return;
