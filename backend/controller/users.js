@@ -9,10 +9,12 @@ const getUsers=(req,res)=>{
         getAllUsers(callback)
 };
 const postOne=async (req,res)=>{
-    if(getOneUser(req.body.useremail)){
-        res.send("user already exists")
-    }
-    try {
+
+      try {
+        if(getOneUser(req.body.useremail)){
+            res.status(409).send("user already exists")
+            return;
+        }
         const hashedPassword=await bcrypt.hash(req.body.userpw, 10)
         const user ={
             username:req.body.username,

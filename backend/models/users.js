@@ -7,7 +7,7 @@ const getAllUsers=(callback)=>{
     })
 }
 const getOneUser=async (useremail)=>{
-    const sql=`SELECT * FROM users where useremail=${useremail}`
+    const sql=`SELECT * FROM users where useremail="${useremail}"`
     return new Promise((resolve, reject) => {
         connection.query(sql,(err, result) => {
           if (err) {
