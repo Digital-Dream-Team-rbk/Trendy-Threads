@@ -8,6 +8,9 @@ app.use(cors());
 const adminRoute = require('../backend/routes/admin.js');
 // user routes
 const userRoute = require("../backend/routes/users.js")
+// Import products route
+const productsRoute = require('../backend/routes/products.js'); 
+
 
 
 
@@ -15,7 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use('/api/admin',adminRoute);
-app.use("/api/users",userRoute)
+app.use("/api/users",userRoute);
+app.use('/api/products', productsRoute); 
+
 
 
 module.exports = app; 
