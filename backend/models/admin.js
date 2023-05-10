@@ -12,7 +12,7 @@ module.exports={
   createAdmin: function(admin) {
     return new Promise((resolve, reject) => {
       const sql = "INSERT INTO admin SET ?";
-      con.query(sql,admin,(err, result) => {
+      con.query(sql,admin,(err,result) => {
         if (err) {
           reject(err);
         } else {
