@@ -1,40 +1,63 @@
 const admin =require('../models/admin.js')
 const bcrypt = require("bcrypt");
 module.exports={
-    getOneAdmin:(req,res)=>{
-        const mycallback=function(err, results) {
-            if(err) res.status(500).send(err);
-            else res.json(results)
-        }
-        admin.getOne(mycallback,req.params.adminname)
-    },
-    postAdmin:async function (req,res){
-    try{
+    // search for an admin
+    getOneAdmin: (req, res) => {
+        admin.getOne(req.params.adminmail)
+          .then((result) => {
+            res.send(result);
+          })
+          .catch((error) => {
+            res.status(500).send(error);
+          });
+      },
+            
+      // sign up admin     
+      signUpAdmin: async function (req, res) {
         const { adminname, adminmail, adminpw } = req.body
-        console.log(req.body.adminmail)
-        const mycallback=function(err, results) {
-            if(err) res.status(500).send(err);
-            else res.json(results)
+        const bool = await admin.getOne(req.body.adminmail)
+        console.log(bool)
+        try {
+          if (bool.length!==0) {
+            res.status(409).send('admin exists') 
+          }
+           else {
+            const hashed = await bcrypt.hash(req.body.adminpw, 10);
+            const newAdmin = {
+              adminname: req.body.adminname,
+              adminmail: req.body.adminmail,
+              adminpw: hashed
+            }
+            console.log(newAdmin)
+            await admin.createAdmin(newAdmin)
+            res.status(201).send(result)
+          }
         }
-        const boll=admin.getOne(mycallback,req.body.adminmail)
-        console.log(boll,'this is boll')
-       if(boll){
-           res.send('admin exists')  
+        catch (err) {
+          res.status(500).send(err)
+        }
+      },
+    //login admin 
+    loginAdmin:async function (req,res){
+       try{
+        const {adminmail, adminpw } = req.body
+        const bool=admin.getOne(req.body.adminmail)
+       if(bool.length===0){
+           res.send('admin not exists ')  
        }
-       else {
-        const hashed=await bcrypt.hash(req.body.adminpw,10);
-        console.log(hashed)
-        await admin.createAdmin(mycallback,{
-        adminname:req.body.adminname,
-        adminmail:req.body.adminmail,
-        adminpw:hashed
-        })
-        res.status(201).send(res)
-    }
-    }
-        catch(err) {
-            res.status(404).send(err)
+       else{
+        const adminRow=bool[0]
+        console.log(adminRow.adminpw,"adminRow")
+        const passwordMatch = await bcrypt.compare(adminpw,adminRow.adminpw);
+        if(passwordMatch){
+            console.log("check the name",adminRow.adminname)
         }
+        else res.send("wrong password")
+       }
+       }
+       catch(err) {
+        res.status(404).send(err)
+       }
     }
     }
 
