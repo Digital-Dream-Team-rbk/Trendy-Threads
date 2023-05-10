@@ -9,7 +9,7 @@ const adminRoute = require('../backend/routes/admin.js');
 // user routes
 const userRoute = require("../backend/routes/users.js")
 // Import products route
-const productsRoute = require('../backend/routes/products.js'); 
+const productsRoute = require('../backend/routes/product.js'); 
 
 
 
