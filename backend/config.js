@@ -1,6 +1,6 @@
 const db={
     host:"localhost",
-    user:' .',
+    user:'',
     password:'',
     database:'trendy'
 }
