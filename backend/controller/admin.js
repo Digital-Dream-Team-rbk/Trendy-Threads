@@ -12,7 +12,7 @@ module.exports={
           });
       },
             
-      //------------------------------- sign up admin-----------------------------------//     
+    //------------------------------- sign up admin-----------------------------------//     
     signUpAdmin: async function (req, res) {
         const { adminname, adminmail, adminpw } = req.body
         const bool = await admin.getOne(adminmail)
@@ -57,6 +57,26 @@ module.exports={
        catch(err) {
         res.status(500).send(err)
        }
+    },
+    //--------------------------update admin info-------------------
+    updateAdmin:function(req,res){
+      admin.changeAdmin(req.params.id,req.body)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.status(500).send(error);
+      });
+    },
+     //--------------------------delete admin info-------------------
+    deleteAdmin:function(req,res){
+      admin.deleteAdmin(req.params.id)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.status(500).send(error);
+      });
     }
-    }
+  }
 
