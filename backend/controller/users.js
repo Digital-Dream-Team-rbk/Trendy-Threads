@@ -9,9 +9,9 @@ const getUsers=(req,res)=>{
         getAllUsers(callback)
 };
 const postOne=async (req,res)=>{
-
       try {
-        if(getOneUser(req.body.useremail)){
+        const dbUser=getOneUser(req.body.useremail)
+        if(dbUser.length > 0){
             res.status(409).send("user already exists")
             return;
         }
