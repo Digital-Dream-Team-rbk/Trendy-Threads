@@ -1,5 +1,6 @@
 const {getAllUsers,getOneUser,postOneUser,updateOneUser,deleteOneUser}= require ("../models/users")
 const bcrypt = require ("bcrypt")
+
 const getUsers=(req,res)=>{
     const callback=(err,result)=>{
         if(err) res.status(500).send(err)
