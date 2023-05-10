@@ -37,8 +37,8 @@ module.exports={
 
     deleteAdmin:function(id){
     return new Promise((resolve,reject)=>{
-      const sql=`DELETE FROM admin WHERE id=${id}`
-      con.query(sql,admin,(err,rslt)=>{
+      const sql=`DELETE FROM admin WHERE adminid=${id}`
+      con.query(sql,(err,rslt)=>{
       if(err){
         reject(err)
       }
