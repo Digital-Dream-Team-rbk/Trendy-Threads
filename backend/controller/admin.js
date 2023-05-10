@@ -61,8 +61,15 @@ module.exports={
        }
     },
     //--------------------------update admin info-------------------
-    updateAdmin:function(req,res){
-      admin.changeAdmin(req.params.adminid,req.body)
+    updateAdmin:async function(req,res){
+      const { adminname,adminmail,adminpw } = req.body
+      const hashed = await bcrypt.hash(adminpw, 10);
+      const newAdmin = {
+        adminname:adminname,
+        adminmail:adminmail,
+        adminpw:hashed
+      }
+      admin.changeAdmin(req.params.adminid,newAdmin)
       .then((result) => {
         res.send(result);
       })
