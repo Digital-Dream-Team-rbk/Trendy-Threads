@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`users` (
   `username` VARCHAR(255) NOT NULL,
   `userpw` VARCHAR(255) NOT NULL,
   `useremail` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`userid`)
+  PRIMARY KEY (`userid`),
+  UNIQUE KEY `uniq_useremail` (`useremail`)
 );
 
 

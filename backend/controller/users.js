@@ -1,5 +1,6 @@
-const {getAllUsers,postOneUser,updateOneUser,deleteOneUser}= require ("../models/users")
+const {getAllUsers,getOneUser,postOneUser,updateOneUser,deleteOneUser}= require ("../models/users")
 const bcrypt = require ("bcrypt")
+const jwt = require ("jsonwebtoken")
 const getUsers=(req,res)=>{
     const callback=(err,result)=>{
         if(err) res.status(500).send(err)
@@ -8,7 +9,12 @@ const getUsers=(req,res)=>{
         getAllUsers(callback)
 };
 const postOne=async (req,res)=>{
-    try {
+      try {
+        const dbUser=getOneUser(req.body.useremail)
+        if(dbUser.length > 0){
+            res.status(409).send("user already exists")
+            return;
+        }
         const hashedPassword=await bcrypt.hash(req.body.userpw, 10)
         const user ={
             username:req.body.username,
@@ -20,4 +26,8 @@ const postOne=async (req,res)=>{
     } catch (error) {
         res.status(500).send(error)
     }
+}
+module.exports={
+    getUsers,
+    postOne
 }

@@ -1,9 +1,13 @@
-
+import React from 'react';
 import './App.css';
+import Login from './components/Login.jsx';
 
 function App() {
   return (
-   <h1>hello im amrou</h1>
+    <div> 
+      <Login/>
+    </div>
+
   );
 }
 

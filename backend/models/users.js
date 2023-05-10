@@ -6,8 +6,20 @@ const getAllUsers=(callback)=>{
         callback(err,result)
     })
 }
+const getOneUser=async (useremail)=>{
+    const sql=`SELECT * FROM users where useremail="${useremail}"`
+    return new Promise((resolve, reject) => {
+        connection.query(sql,(err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        });
+      })
+}
 const postOneUser= async (user)=>{
-    const sql=`INSERT INTO users values ?`
+    const sql=`INSERT INTO users set ?`
     return new Promise((resolve, reject) => {
         connection.query(sql, user, (err, result) => {
           if (err) {
@@ -31,6 +43,7 @@ const deleteOneUser=(name,callback)=>{
 }
 module.exports={
     getAllUsers,
+    getOneUser,
     postOneUser,
     updateOneUser,
     deleteOneUser
