@@ -4,4 +4,4 @@ const db={
     password:'',
     database:'trendy'
 }
-module.exports=db
+module.exports=db;
