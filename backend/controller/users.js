@@ -3,6 +3,8 @@ const bcrypt = require ("bcrypt")
 const jwt = require ("jsonwebtoken");
 const db = require("../config");
 
+
+
 const getUsers=(req,res)=>{
     const callback=(err,result)=>{
         if(err) res.status(500).send(err)
