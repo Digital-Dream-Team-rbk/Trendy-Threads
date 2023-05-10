@@ -1,5 +1,4 @@
 const connection= require("../connection")
-
 const getAllUsers=(callback)=>{
     const sql="SELECT * FROM users"
     connection.query(sql,(err,result)=>{
