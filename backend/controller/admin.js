@@ -42,7 +42,7 @@ module.exports={
         const bool= await admin.getOne(adminmail)
 
        if(bool.length===0){
-           res.send('admin not exists')  
+          res.send('admin not exists')  
        }
 
        else{
