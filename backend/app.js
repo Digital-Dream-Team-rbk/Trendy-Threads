@@ -10,13 +10,10 @@ const adminRoute = require('../backend/routes/admin.js');
 const userRoute = require("../backend/routes/users.js")
 // Import products route
 const productsRoute = require('../backend/routes/product.js'); 
-
-
-
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+//use path for controller methodes
 app.use('/api/admin',adminRoute);
 app.use("/api/users",userRoute);
 app.use('/api/products', productsRoute); 
