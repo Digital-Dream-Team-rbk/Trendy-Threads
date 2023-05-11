@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const HomeUser = () => {
   const [data, setData] = useState([]);
-
   const fetch = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/products/all');
@@ -29,17 +28,18 @@ const update =(event,id,quantity)=>{
   console.log(data);
 
   return (
-    <div>{data.map((e)=>
+    <div>
+        {data.map((e)=>
         <div className='prod' key={e.productid}>
         <img className='img' src={e.productimage}alt="" />
-        <h4>NAME:{e.productname}</h4>
-        <h4>{e.producprice}</h4>
+        <h4>{e.productname}</h4>
+        <h4>{e.productprice}</h4>
         <h4>{e.productquantity}</h4>
         <h4>{e.productcategory}</h4>
         <button className='btn' placeholder='Buy' onClick={(event)=>update(event,e.productid,e.productquantity)}>Buy</button>
         
         </div>
-      )}</div>
+     )}</div>
   );
 };
 

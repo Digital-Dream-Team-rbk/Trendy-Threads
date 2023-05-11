@@ -1,18 +1,20 @@
 import React from 'react';
 import './App.css';
-import Signup from './components/Signup.jsx';
-import Login from './components/Login.jsx';
-import AdminLogin from './components/AdminLogin';
-import AdminSignup from './components/AdminSignUp';
-import HomeAdmin from './components/HomeAdmin'
+import Signup from './components/user/Signup.jsx';
+import Login from './components/user/Login.jsx';
+import AdminLogin from './components/admin/AdminLogin';
+import AdminSignup from './components/admin/AdminSignUp';
+import HomeAdmin from './components/admin/HomeAdmin'
 import { Routes, Route} from "react-router-dom";
-import HomeUser from './components/HomeUser.jsx';
+import HomeUser from './components/user/HomeUser.jsx';
 import Prod from './components/Prod';
+import WelcomePage from './components/WelcomePage';
 
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<WelcomePage/>}/>
       <Route path="/homeUser" element={<HomeUser/>}/>
       <Route path="/prod" element={<Prod/>}/>
       <Route path="/signUp" element={<Signup/>}/>
