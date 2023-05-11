@@ -1,6 +1,15 @@
 const admin =require('../models/admin.js')
 const bcrypt = require("bcrypt");
 module.exports={
+  //------------------------------get All admin-----------------------------------------//
+  getAll:(req, res) => {
+     admin.getAllUsers()
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.status(500).send(error);
+      })},
     //---------------------------- search for an admin----------------------------------//
     getOneAdmin: (req, res) => {
         admin.getOne(req.params.adminmail)
@@ -42,24 +51,44 @@ module.exports={
        try{
         const {adminmail, adminpw } = req.body
         const bool= await admin.getOne(adminmail)
-
-       if(bool.length===0){
-          res.send('admin not exists')  
+        if(bool.length===0 || !bool){
+          res.status(404).send('admin not exists')
+          return ;  
        }
-
        else{
         const adminRow=bool[0];
         const passwordMatch = await bcrypt.compare(adminpw,adminRow.adminpw);
         if(passwordMatch){
-        res.send("you are logged")
+        res.status(200).send("you are logged")
         }
-        else res.send("wrong password")
+        else res.status(400).send("wrong password or email")
        }
        }
        catch(err) {
         res.status(500).send(err)
        }
     },
+
+    // loginAdmin : async function (req, res) {
+    //   try {
+    //     const { adminmail, adminpw } = req.body;
+    //     const adminRow = await admin.getOne(adminmail);
+    
+    //     if (adminRow.length === 0) {
+    //       res.status(401).send('Admin does not exist');
+    //     } else {
+    //       const passwordMatch = await bcrypt.compare(adminpw, adminRow[0].adminpw);
+    //       if (passwordMatch) {
+    //         res.send('You are logged in.');
+    //       } else {
+    //         res.status(401).send('Wrong password.');
+    //       }
+    //     }
+    //   } catch (err) {
+    //     console.log(err);
+    //     res.status(500).send(err);
+    //   }
+    // },
     //--------------------------update admin info-------------------
     updateAdmin:async function(req,res){
       const { adminname,adminmail,adminpw } = req.body

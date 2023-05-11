@@ -5,6 +5,7 @@ const cloudinary = require('cloudinary').v2;
 const app = express();
 const cors =require ('cors');
 app.use(cors());
+
 cloudinary.config({
     cloud_name: 'dvrzz6dtg',
     api_key: '361711739922946',

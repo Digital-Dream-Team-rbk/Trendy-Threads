@@ -6,18 +6,22 @@ import AdminLogin from './components/AdminLogin';
 import AdminSignup from './components/AdminSignUp';
 import HomeAdmin from './components/HomeAdmin'
 import { Routes, Route} from "react-router-dom";
+import HomeUser from './components/HomeUser.jsx';
+import {Routes, Route} from "react-router-dom";
+import Prod from './components/Prod';
+
 
 function App() {
   return (
     <Routes>
-    <Route path="/homeUser" element={<HomeUser/>}/>
-    <Route path="/prod" element={<Prod/>}/>
-    <Route path="/signUp" element={<Signup/>}/>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/signUpAdmin" element={<AdminSignup/>}/>
-    <Route path="/loginAdmin" element={<AdminLogin/>}/>
-    <Route path="/homeAdmin" element={<HomeAdmin/>}/>
-  </Routes>  
+      <Route path="/homeUser" element={<HomeUser/>}/>
+      <Route path="/prod" element={<Prod/>}/>
+      <Route path="/signUp" element={<Signup/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/signUpAdmin" element={<AdminSignup/>}/>
+      <Route path="/loginAdmin" element={<AdminLogin/>}/>
+      <Route path="/homeAdmin" element={<HomeAdmin/>}/>
+    </Routes>    
   );
 }
 
