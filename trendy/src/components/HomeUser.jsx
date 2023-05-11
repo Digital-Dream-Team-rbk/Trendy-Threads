@@ -33,7 +33,7 @@ const update =(event,id,quantity)=>{
         {data.map((e)=>
         <div className='prod' key={e.productid}>
         <img className='img' src={e.productimage}alt="" />
-        <h4>{e.productname}</h4>
+        <h4>NAME:{e.productname}</h4>
         <h4>{e.productprice}</h4>
         <h4>{e.productquantity}</h4>
         <h4>{e.productcategory}</h4>
