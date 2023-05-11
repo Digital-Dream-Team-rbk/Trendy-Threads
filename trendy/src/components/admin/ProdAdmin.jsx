@@ -9,7 +9,7 @@ function ProdAdmin({data}) {
         <h4>{e.productprice}</h4>
         <h4>{e.productquantity}</h4>
         <h4>{e.productcategory}</h4>
-        <button className='btn' placeholder='Buy' >Buy</button>
+        <button className='btn'>Buy</button>
         </div>
     ))
   )

@@ -7,9 +7,9 @@ const cors =require ('cors');
 app.use(cors());
 
 cloudinary.config({
-    cloud_name: 'dvrzz6dtg',
-    api_key: '361711739922946',
-    api_secret: '1lxWKsa0rLkhY9mMVt_uEguWrbA'
+    cloud_name:'dvrzz6dtg',
+    api_key:'361711739922946',
+    api_secret:'1lxWKsa0rLkhY9mMVt_uEguWrbA'
   });
 
 
@@ -35,7 +35,6 @@ app.use('/api/products', productsRoute);
 
 app.post('/upload', (req, res) => {
     const file = req.files.file;
-    
     // upload file to Cloudinary
     cloudinary.uploader.upload(file.tempFilePath, (err, result) => {
       if (err) {

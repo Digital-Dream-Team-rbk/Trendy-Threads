@@ -30,7 +30,7 @@ const getOneProduct = async (id) => {
 
 const postOneProduct = async (product) => {
   // Upload the image file to Cloudinary and get back the public URL
-  //const image = await cloudinary.uploader.upload(product.productimage.path);
+  const image = await cloudinary.uploader.upload(product.productimage.path);
 
   // Build the new product object to insert into the database
   const newProduct = {
@@ -38,6 +38,7 @@ const postOneProduct = async (product) => {
     productprice: product.productprice,
     productquantity: product.productquantity,
     productcategory: product.productcategory,
+    productimage:image.secure_url,
     adminid: product.adminid,
   };
 
