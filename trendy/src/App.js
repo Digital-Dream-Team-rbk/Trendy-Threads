@@ -5,11 +5,13 @@ import Login from './components/Login.jsx';
 import AdminLogin from './components/AdminLogin';
 import AdminSignup from './components/AdminSignUp';
 import HomeAdmin from './components/HomeAdmin'
-import { Routes, Route} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
+import Prod from './components/Prod';
 
 function App() {
   return (
     <Routes>
+      <Route path="/prod" element={<Prod/>}/>
       <Route path="/signUp" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signUpAdmin" element={<AdminSignup/>}/>

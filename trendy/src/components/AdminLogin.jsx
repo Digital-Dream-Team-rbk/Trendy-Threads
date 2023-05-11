@@ -6,18 +6,22 @@ const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin =()=>{
+  const handleLogin =async ()=>{
     try {
-       axios.post('http://localhost:3000/api/admin/login', {
+      if(email==="" || password===""){
+        return alert("fill the rows please")
+      }
+       const response= await axios.post('http://localhost:3000/api/admin/login', {
         adminmail: email,
         adminpw: password
-      }).then(()=>{
-        console.log('Authentication successful');
-        navigate("/homeAdmin")
       })
-     
+      if (response.data === "you are logged") {
+        navigate("/homeAdmin");
+      } else {
+        alert(response.data);
+      }
     } catch (error) {
-      console.log(error.response.data);
+      alert(error.response.data);
     }
   };
 
