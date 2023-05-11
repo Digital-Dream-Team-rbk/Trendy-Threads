@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const HomeUser = () => {
   const [data, setData] = useState([]);
-
   const fetch = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/products/all');
