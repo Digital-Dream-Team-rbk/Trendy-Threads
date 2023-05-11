@@ -1,7 +1,7 @@
 const db={
     host:"localhost",
     user:'root',
-    password:'',
+    password:'root',
     database:'trendy'
 }
 module.exports=db;
