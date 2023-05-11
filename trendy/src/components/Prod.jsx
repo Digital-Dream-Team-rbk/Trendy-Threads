@@ -35,7 +35,6 @@ function Prod() {
         productquantity:productquantity,
         productcategory:productcategory
 
-    //   username:name,
      
     })
     .then(suc=>{console.log(suc)})

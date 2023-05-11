@@ -10,12 +10,14 @@ import { Routes, Route} from "react-router-dom";
 function App() {
   return (
     <Routes>
-      <Route path="/signUp" element={<Signup/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/signUpAdmin" element={<AdminSignup/>}/>
-      <Route path="/loginAdmin" element={<AdminLogin/>}/>
-      <Route path="/homeAdmin" element={<HomeAdmin/>}/>
-    </Routes>    
+    <Route path="/homeUser" element={<HomeUser/>}/>
+    <Route path="/prod" element={<Prod/>}/>
+    <Route path="/signUp" element={<Signup/>}/>
+    <Route path="/login" element={<Login/>}/>
+    <Route path="/signUpAdmin" element={<AdminSignup/>}/>
+    <Route path="/loginAdmin" element={<AdminLogin/>}/>
+    <Route path="/homeAdmin" element={<HomeAdmin/>}/>
+  </Routes>  
   );
 }
 
