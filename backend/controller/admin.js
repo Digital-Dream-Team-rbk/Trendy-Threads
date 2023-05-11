@@ -12,13 +12,14 @@ module.exports={
           });
       },
             
-      //------------------------------- sign up admin-----------------------------------//     
-    signUpAdmin: async function (req, res) {
-        const { adminname, adminmail, adminpw } = req.body
-        const bool = await admin.getOne(adminmail)
+    //------------------------------- sign up admin-----------------------------------//     
+    signUpAdmin: async (req, res)=> {
+       
         try {
+            const { adminname, adminmail, adminpw } = req.body
+            const bool = await admin.getOne(adminmail)
           if (bool.length!==0) {
-            res.status(409).send('admin exists') 
+            res.status(409).send('admin exists')
           }
            else {
             const hashed = await bcrypt.hash(adminpw, 10);
@@ -28,10 +29,11 @@ module.exports={
               adminpw: hashed
             }
             await admin.createAdmin(newAdmin)
-            res.status(201).send(result)
+            res.status(201).send("admin created")
           }
         }
         catch (err) {
+            console.log("from catch")
           res.status(500).send(err)
         }
     },
@@ -42,7 +44,7 @@ module.exports={
         const bool= await admin.getOne(adminmail)
 
        if(bool.length===0){
-           res.send('admin not exists')  
+          res.send('admin not exists')  
        }
 
        else{
@@ -57,6 +59,33 @@ module.exports={
        catch(err) {
         res.status(500).send(err)
        }
+    },
+    //--------------------------update admin info-------------------
+    updateAdmin:async function(req,res){
+      const { adminname,adminmail,adminpw } = req.body
+      const hashed = await bcrypt.hash(adminpw, 10);
+      const newAdmin = {
+        adminname:adminname,
+        adminmail:adminmail,
+        adminpw:hashed
+      }
+      admin.changeAdmin(req.params.adminid,newAdmin)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.status(500).send(error);
+      });
+    },
+     //--------------------------delete admin info-------------------
+    deleteAdmin:function(req,res){
+      admin.deleteAdmin(req.params.adminid)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((error) => {
+        res.status(500).send(error);
+      });
     }
-    }
+  }
 

@@ -26,6 +26,7 @@ app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+//use path for controller methodes
 app.use('/api/admin',adminRoute);
 app.use("/api/users",userRoute);
 app.use('/api/products', productsRoute); 

@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
   `productprice` DECIMAL(10,2) NOT NULL,
   `productquantity` INT NOT NULL,
   `productcategory` VARCHAR(255) NOT NULL,
+  `productimage` VARCHAR(400) NOT NULL,
   `adminid` INT NOT NULL,
   PRIMARY KEY (`productid`),
   INDEX (`adminid` ASC) VISIBLE,
