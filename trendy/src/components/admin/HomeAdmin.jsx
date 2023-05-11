@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import UsersAdmin from './UsersAdmin';
+import ProdAdmin from './ProdAdmin';
 function HomeAdmin() {
-  const navigate = useNavigate();
   //data of users
   const [users,setUsers]=useState([]);
   //data of products
   const[products,setProducts]=useState([])
   //fetch the data from the API
-  const fetchData = () => {
+  const fetchData= async()=>{
     return axios.get('http://localhost:3000/api/products/all')
       .then((res) => {
         setProducts(res.data)
@@ -23,15 +23,16 @@ function HomeAdmin() {
         console.log(err);
       });
   };
+//use effect
   useEffect(() => {
     fetchData()
-    console.log(users)
-  }, []);
+  },[]);
   
-
   return (
-
-    <h1>welcome to the home page</h1>
+    <div>
+      <UsersAdmin data={users}/>
+      <ProdAdmin data={products}/>
+    </div>
   )
 }
 
