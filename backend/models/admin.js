@@ -1,5 +1,14 @@
 const con=require("../connection")
 module.exports={
+  getAllUsers:()=>{
+    return new Promise((resolve, reject) => {
+      const sql=`SELECT * FROM admin `
+      con.query(sql,(err,rslt)=>{
+        if (err) reject(err)
+        else resolve(rslt)
+      })
+    })
+},
    getOne : function(mail) {
     return new Promise((resolve, reject) => {
       const sql=`SELECT * FROM admin where adminmail="${mail}"`
