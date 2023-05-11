@@ -64,8 +64,35 @@ const login = async (req, res) => {
       res.status(400).send("Problem with login");
     }
   };
+  const updateOne= async (req,res)=>{
+    try {
+    const hashedPassword=await bcrypt.hash(req.body.userpw, 10)
+    const user ={
+        username:req.body.username,
+        userpw:hashedPassword,
+        useremail:req.body.useremail
+    }
+    updateOneUser(user.username,user)
+    res.status(201).send(user)
+  }
+  catch(err) {
+    res.status(500).send(err)
+   }
+}
+const deleteOne= async (req,res)=>{
+  try{
+     const mail=req.params.useremail
+     await deleteOneUser(mail)
+     res.status(204).send(mail)
+  }
+  catch(err) {
+    res.status(500).send(err)
+   }
+}
 module.exports={
     getUsers,
     postOne,
-    login
+    login,
+    updateOne,
+    deleteOne
 }
