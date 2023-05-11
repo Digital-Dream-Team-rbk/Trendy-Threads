@@ -1,6 +1,5 @@
 const {getAllUsers,getOneUser,postOneUser,updateOneUser,deleteOneUser}= require ("../models/users")
 const bcrypt = require ("bcrypt")
-// const jwt = require ("jsonwebtoken")
 const getUsers=(req,res)=>{
     const callback=(err,result)=>{
         if(err) res.status(500).send(err)
