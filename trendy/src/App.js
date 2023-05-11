@@ -6,10 +6,12 @@ import AdminLogin from './components/AdminLogin';
 import AdminSignup from './components/AdminSignUp';
 import HomeAdmin from './components/HomeAdmin'
 import { Routes, Route} from "react-router-dom";
+import HomeUser from './components/HomeUser';
 
 function App() {
   return (
     <Routes>
+      <Route path="/homeUser" element={<HomeUser/>}/>
       <Route path="/signUp" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signUpAdmin" element={<AdminSignup/>}/>
