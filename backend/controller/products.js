@@ -32,7 +32,6 @@ const postOneProduct = async (req, res) => {
   try {
     // Upload the image URL to Cloudinary and get back the result
     const image = await cloudinary.uploader.upload(`${req.body.productimage}`);
-
     // Build the new product object to insert into the database
     const newProduct = {
       productname: req.body.productname,
@@ -42,7 +41,8 @@ const postOneProduct = async (req, res) => {
       productimage: image.secure_url,
       adminid: 1,
     };
-  productModel.postOneProduct(newProduct)
+  await productModel.postOneProduct(newProduct)
+  console.log("added")
 }
 catch (err) {
   res.status(500).send(err);
@@ -63,7 +63,6 @@ const updateOneProduct = (req, res) => {
 
 const deleteOneProduct = (req, res) => {
   const id = req.params.id;
-  console.log(id)
   productModel.deleteOneProduct(id,(err, result) => {
     if (err) {
       res.status(500).send(err);
