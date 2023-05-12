@@ -1,8 +1,5 @@
 const connection = require("../connection");
 
-
-
-
 const getAllProducts = (callback) => {
   const sql = "SELECT * FROM products";
   connection.query(sql, (err, result) => {

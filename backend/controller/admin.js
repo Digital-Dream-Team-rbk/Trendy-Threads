@@ -68,27 +68,6 @@ module.exports={
         res.status(500).send(err)
        }
     },
-
-    // loginAdmin : async function (req, res) {
-    //   try {
-    //     const { adminmail, adminpw } = req.body;
-    //     const adminRow = await admin.getOne(adminmail);
-    
-    //     if (adminRow.length === 0) {
-    //       res.status(401).send('Admin does not exist');
-    //     } else {
-    //       const passwordMatch = await bcrypt.compare(adminpw, adminRow[0].adminpw);
-    //       if (passwordMatch) {
-    //         res.send('You are logged in.');
-    //       } else {
-    //         res.status(401).send('Wrong password.');
-    //       }
-    //     }
-    //   } catch (err) {
-    //     console.log(err);
-    //     res.status(500).send(err);
-    //   }
-    // },
     //--------------------------update admin info-------------------
     updateAdmin:async function(req,res){
       const { adminname,adminmail,adminpw } = req.body
