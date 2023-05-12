@@ -1,4 +1,5 @@
 const productModel = require("../models/product");
+const connection = require("../connection");
 const cloudinary = require("cloudinary").v2;
 // Configure Cloudinary with your account details
 cloudinary.config({
@@ -30,7 +31,7 @@ const getOneProduct = async (req, res) => {
 const postOneProduct = async (req, res) => {
   try {
     // Upload the image URL to Cloudinary and get back the result
-    const image = await cloudinary.uploader.upload("../nike-air-force-1-low-white-grey-fd9763-101-2.jpg");
+    const image = await cloudinary.uploader.upload(`${req.body.productimage}`);
 
     // Build the new product object to insert into the database
     const newProduct = {
