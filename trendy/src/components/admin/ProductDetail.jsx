@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-function ProductDetail({e}) {
+function ProductDetail({e,fetchData}) {
 const [show,setShow]=useState(false)
 const [productprice,setproductprice]=useState(0)
 const [productquantity,setproductquantity]=useState(0)
@@ -9,15 +9,16 @@ const [productcategory,setproductcategory]=useState("")
 const [tracker,setTracker]=useState(false)
 const navigate = useNavigate();
 
-//-------------------------update request to the API
+//-------------------------update request to the API-------------------------------
 const UpdateProd=(id,prod)=>{
  axios.put(`http://localhost:3000/api/products/update/${id}`,prod)
  .then((res)=>{
     console.log(res.data)
+    setTracker(!tracker)
   })
   .catch((err)=>{console.log(err)})
 }
-//---------------------------handle the update
+//---------------------------handle the update------------------------------------
 const handleUpdate=()=>{
     const id=e.productid;
     const prod={
@@ -30,21 +31,23 @@ const handleUpdate=()=>{
     }
     UpdateProd(id,prod)
     setShow(!show)
+
 }
-//-------------------------delete request to the API
+//-------------------------delete request to the API------------------------------------
 const deleteProd=(id)=>{
   axios.delete(`http://localhost:3000/api/products/delete/${id}`)
   .then((res)=>{
     console.log(res.data)
+    setTracker(!tracker)
   })
   .catch((err)=>{console.log(err)})
  }
- //----------------------handle delete 
+ //----------------------handle delete-------------------------------------------------------
 const handleDelete=()=>{
     const id=e.productid
     deleteProd(id)
 }
-//------------------------handle the display of inputs
+//------------------------handle the display of inputs-------------------------------------------
 const handleShow=()=>{
      setShow(!show)
 }
@@ -63,12 +66,16 @@ const decrementQuanity=()=>{
  const decrementPrice=()=>{
    e.productprice--
  }
- //----------------------------adding a product
+ //----------------------------adding a product------------------------------------
  const handleAdd=()=>{
     navigate("/prod")
  }
+ //------------------------------use effect---------------------------------------
+ useEffect(() => {
+    fetchData()
+  },[tracker]);
 
-//---------------------------------rendering the admin interface
+//---------------------------------rendering the admin interface---------------------------------
   return (
     <div>  
      <div>
@@ -93,7 +100,7 @@ const decrementQuanity=()=>{
             <button className='btn' onClick={handleUpdate}>Confirm</button>
           </div> )  
           : <></>}
-            </div>
+         </div>
 
     </div>
    
