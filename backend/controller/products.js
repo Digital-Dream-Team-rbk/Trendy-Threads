@@ -42,23 +42,12 @@ const postOneProduct = async (req, res) => {
       productimage: image.secure_url,
       adminid: 2,
     };
-
-    // Insert the new product into the database
-    const query = 'INSERT INTO products SET ?';
-    connection.query(query, newProduct, (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send(err);
-        return;
-      }
-
-      res.status(201).json(result);
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send(err);
-  }
-};
+  productModel.postOneProduct(newProduct)
+}
+catch (err) {
+  res.status(500).send(err);
+}
+}
 
 const updateOneProduct = (req, res) => {
   const id = req.params.id;
