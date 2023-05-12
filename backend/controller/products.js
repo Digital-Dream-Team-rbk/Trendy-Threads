@@ -24,7 +24,7 @@ const getOneProduct = async (req, res) => {
 const postOneProduct = async (req, res) => {
   try {
     const imgPath=path.join(__dirname,`../backend/images/${req.file.filename}`)
-    const imgId=await uploadImage(imgPath)
+    const imgId= await uploadImage(imgPath)
     // Build the new product object to insert into the database
     const newProduct = {
       productname: req.body.productname,
@@ -34,23 +34,12 @@ const postOneProduct = async (req, res) => {
       productimage: imgId,
       adminid: req.body.adminid,
     };
-
-    // Insert the new product into the database
-    const query = 'INSERT INTO products SET ?';
-    connection.query(query, newProduct, (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send(err);
-        return;
-      }
-
-      res.status(201).json(result);
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send(err);
-  }
-};
+  productModel.postOneProduct(newProduct)
+}
+catch (err) {
+  res.status(500).send(err);
+}
+}
 
 const updateOneProduct = (req, res) => {
   const id = req.params.id;
