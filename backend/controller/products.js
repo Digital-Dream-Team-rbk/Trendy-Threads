@@ -63,11 +63,12 @@ const updateOneProduct = (req, res) => {
 
 const deleteOneProduct = (req, res) => {
   const id = req.params.id;
-  productModel.deleteOneProduct(id, (err, result) => {
+  console.log(id)
+  productModel.deleteOneProduct(id,(err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).json(result);
+      res.status(204).json(result);
     }
   });
 };

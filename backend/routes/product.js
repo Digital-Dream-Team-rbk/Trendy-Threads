@@ -15,6 +15,6 @@ router.post('/postone/', products.postOneProduct);
 router.put('/update/:id', products.updateOneProduct);
 
 // Delete a product by ID
-router.delete('delete/:id', products.deleteOneProduct);
+router.delete('/delete/:id', products.deleteOneProduct);
 
 module.exports = router;
