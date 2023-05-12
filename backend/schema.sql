@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`admin` (
 CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
   `productid` INT NOT NULL AUTO_INCREMENT,
   `productname` VARCHAR(255) NOT NULL,
-  `productprice` DECIMAL(10,2) NOT NULL,
+  `productprice` INT NOT NULL,
   `productquantity` INT NOT NULL,
   `productcategory` VARCHAR(255) NOT NULL,
   `productimage` VARCHAR(400) NOT NULL,

@@ -42,7 +42,7 @@ const deleteProd=(id)=>{
   axios.delete(`http://localhost:3000/api/products/delete/${id}`)
   .then((res)=>{
     console.log(res.data)
-    setTracker(!tracker)
+
   })
   .catch((err)=>{console.log(err)})
  }
@@ -62,28 +62,26 @@ const icrementQuanity=()=>{
      UpdateProd(id,{
       productquantity:inc,
     });
-    setTracker(!tracker)
+
 }
 const decrementQuanity=()=>{
   let dec=e.productquantity-1
   UpdateProd(id,{
     productquantity:dec,
   });
-  setTracker(!tracker)
  }
  const icrementPrice=()=>{
     let inc=e.productprice+1
     UpdateProd(id,{
       productprice:inc,
     });
-    setTracker(!tracker)
+    console.log(e.productprice,'ala')
  }
  const decrementPrice=()=>{
    let dec=e.productprice-1
     UpdateProd(id,{
       productprice:dec,
     });
-    setTracker(!tracker)
  }
  //----------------------------adding a product------------------------------------
  const handleAdd=()=>{

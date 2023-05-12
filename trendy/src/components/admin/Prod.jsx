@@ -9,29 +9,31 @@ function Prod() {
   const [productquantity,setproductquantity]=useState(0)
   const [productcategory,setproductcategory]=useState("")
 
-  const Submit=async()=>{
-    await axios.post("http://localhost:3000/api/products/postone",{
-        productname:productname,
-        productprice:productprice,
-        productquantity:productquantity,
-        productcategory:productcategory,
-        productimage:imageUrl
-    })
-    .then((suc)=>{
-      console.log(suc,'navigated')
-      navigate("/homeAdmin")
-    })
-    .catch(err=> {
-      navigate("/homeAdmin")
-      console.log(err)})
-      }
+
+  
+  const Submit = async () => {
+    try {
+      navigate("/homeAdmin");
+      await axios.post("http://localhost:3000/api/products/postone",{
+        productname: productname,
+        productprice: productprice,
+        productquantity: productquantity,
+        productcategory: productcategory,
+        productimage: imageUrl
+      });
+      console.log('Success: Navigating to homeAdmin page...');
+
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+  
       const handlePic = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload =()=>{
          setImageUrl(reader.result);
-         console.log(reader.result);
         };
       };
 
