@@ -10,6 +10,15 @@ const [tracker,setTracker]=useState(false)
 const navigate = useNavigate();
 
 //-------------------------update request to the API-------------------------------
+const id=e.productid;
+let prod={
+    productname:e.productname,
+    adminid:e.adminid,
+    productprice:productprice,
+    productquantity:productquantity,
+    productcategory:productcategory,
+    productimage:e.productimage,
+}
 const UpdateProd=(id,prod)=>{
  axios.put(`http://localhost:3000/api/products/update/${id}`,prod)
  .then((res)=>{
@@ -20,16 +29,11 @@ const UpdateProd=(id,prod)=>{
 }
 //---------------------------handle the update------------------------------------
 const handleUpdate=()=>{
-    const id=e.productid;
-    const prod={
-        productname:e.productname,
-        adminid:e.adminid,
-        productprice:productprice,
-        productquantity:productquantity,
-        productcategory:productcategory,
-        productimage:e.productimage,
-    }
-    UpdateProd(id,prod)
+  UpdateProd(id, {
+    productprice: productprice,
+    productquantity: productquantity,
+    productcategory: productcategory,
+  });
     setShow(!show)
 
 }
@@ -38,7 +42,7 @@ const deleteProd=(id)=>{
   axios.delete(`http://localhost:3000/api/products/delete/${id}`)
   .then((res)=>{
     console.log(res.data)
-    setTracker(!tracker)
+
   })
   .catch((err)=>{console.log(err)})
  }
@@ -51,20 +55,33 @@ const handleDelete=()=>{
 const handleShow=()=>{
      setShow(!show)
 }
-//--------------------------handle the update of the product
+//--------------------------handle the update of the product----------------*
+
 const icrementQuanity=()=>{
-     e.productquantity++
+  let inc=e.productquantity+1
+     UpdateProd(id,{
+      productquantity:inc,
+    });
+
 }
 const decrementQuanity=()=>{
-  e.productquantity--
+  let dec=e.productquantity-1
+  UpdateProd(id,{
+    productquantity:dec,
+  });
  }
  const icrementPrice=()=>{
-    console.log(e.productprice,'b')
-    e.productprice++
-    console.log(e.productprice,'a')
+    let inc=e.productprice+1
+    UpdateProd(id,{
+      productprice:inc,
+    });
+    console.log(e.productprice,'ala')
  }
  const decrementPrice=()=>{
-   e.productprice--
+   let dec=e.productprice-1
+    UpdateProd(id,{
+      productprice:dec,
+    });
  }
  //----------------------------adding a product------------------------------------
  const handleAdd=()=>{
@@ -82,6 +99,7 @@ const decrementQuanity=()=>{
        <button className='btn' onClick={handleAdd}>Add new Product</button>
    </div>
     <div>
+      <img src={e.productimage}  />
   <h4>{e.productname}</h4>
     <h4>{e.productprice}</h4>
     <button onClick={icrementPrice}>+</button>

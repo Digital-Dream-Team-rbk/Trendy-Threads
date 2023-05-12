@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
  const navigate=useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+ const [email, setEmail] = useState('');
+ const [password, setPassword] = useState('');
 
   const handleLogin =async ()=>{
     try {
