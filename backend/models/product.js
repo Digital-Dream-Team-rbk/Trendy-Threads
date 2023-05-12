@@ -2,10 +2,11 @@ const connection = require("../connection");
 const cloudinary = require("cloudinary").v2;
 
 // Configure Cloudinary with your account details
+
 cloudinary.config({
-  cloud_name: "",
-  api_key: "",
-  api_secret: "",
+  cloud_name: 'dvrzz6dtg',
+  api_key: '361711739922946',
+  api_secret: '1lxWKsa0rLkhY9mMVt_uEguWrbA'
 });
 
 const getAllProducts = (callback) => {
@@ -39,13 +40,13 @@ const postOneProduct = async (product) => {
     productquantity: product.productquantity,
     productcategory: product.productcategory,
     productimage:image.secure_url,
-
     adminid: product.adminid,
-  };
+  }
+  const result = await product.create(newProduct);
 
   const sql = `INSERT INTO products SET ?`;
   return new Promise((resolve, reject) => {
-    connection.query(sql, newProduct, (err, result) => {
+    connection.query(sql, result, (err, result) => {
       if (err) {
         reject(err);
       } else {

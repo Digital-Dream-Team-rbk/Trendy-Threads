@@ -18,12 +18,12 @@ function Prod() {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const res = await axios.post('/api/upload', formData, {
+      const res = await axios.post('http://localhost:3000/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      setImageUrl(res.data.url);
+      setImageUrl(res.data.secure_url);
     } catch (err) {
       console.log(err);
     }
@@ -33,9 +33,8 @@ function Prod() {
         productname:productname,
         productprice:productprice,
         productquantity:productquantity,
-        productcategory:productcategory
-
-     
+        productcategory:productcategory,
+        productimage:imageUrl
     })
     .then(suc=>{console.log(suc)})
     .catch(err=>console.log(err))
