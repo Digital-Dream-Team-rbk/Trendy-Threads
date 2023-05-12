@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 function Prod() {
-  
+  const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState("");
   const [productname,setproductname]=useState("")
   const [productprice,setproductprice]=useState(0)
@@ -18,7 +18,9 @@ function Prod() {
         productcategory:productcategory,
         productimage:imageUrl
     })
-    .then(suc=>{console.log(suc)})
+    .then(suc=>{
+      console.log(suc)
+      navigate("/homeAdmin")})
     .catch(err=>console.log(err))
       }
 
