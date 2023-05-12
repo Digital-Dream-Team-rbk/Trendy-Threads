@@ -40,7 +40,7 @@ const postOneProduct = async (req, res) => {
       productquantity: req.body.productquantity,
       productcategory: req.body.productcategory,
       productimage: image.secure_url,
-      adminid: 2,
+      adminid: 1,
     };
   productModel.postOneProduct(newProduct)
 }

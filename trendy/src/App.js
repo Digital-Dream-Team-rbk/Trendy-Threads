@@ -7,7 +7,7 @@ import AdminSignup from './components/admin/AdminSignUp';
 import HomeAdmin from './components/admin/HomeAdmin'
 import { Routes, Route} from "react-router-dom";
 import HomeUser from './components/user/HomeUser.jsx';
-import Prod from './components/Prod';
+import Prod from './components/admin/Prod';
 import WelcomePage from './components/WelcomePage';
 
 
