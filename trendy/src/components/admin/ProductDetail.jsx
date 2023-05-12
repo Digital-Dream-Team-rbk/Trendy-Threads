@@ -3,22 +3,13 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 function ProductDetail({e,fetchData}) {
 const [show,setShow]=useState(false)
-const [productprice,setproductprice]=useState(0)
-const [productquantity,setproductquantity]=useState(0)
-const [productcategory,setproductcategory]=useState("")
+const [productprice,setproductprice]=useState(e.productprice)
+const [productquantity,setproductquantity]=useState(e.productquantity)
+const [productcategory,setproductcategory]=useState(e.productcategory)
 const [tracker,setTracker]=useState(false)
 const navigate = useNavigate();
-
 //-------------------------update request to the API-------------------------------
-const id=e.productid;
-let prod={
-    productname:e.productname,
-    adminid:e.adminid,
-    productprice:productprice,
-    productquantity:productquantity,
-    productcategory:productcategory,
-    productimage:e.productimage,
-}
+
 const UpdateProd=(id,prod)=>{
  axios.put(`http://localhost:3000/api/products/update/${id}`,prod)
  .then((res)=>{
@@ -28,6 +19,7 @@ const UpdateProd=(id,prod)=>{
   .catch((err)=>{console.log(err)})
 }
 //---------------------------handle the update------------------------------------
+const id=e.productid;
 const handleUpdate=()=>{
   UpdateProd(id, {
     productprice: productprice,
@@ -35,18 +27,16 @@ const handleUpdate=()=>{
     productcategory: productcategory,
   });
     setShow(!show)
-
 }
-//-------------------------delete request to the API------------------------------------
+//-------------------------delete request to the API----------------------------------------
 const deleteProd=(id)=>{
   axios.delete(`http://localhost:3000/api/products/delete/${id}`)
   .then((res)=>{
     console.log(res.data)
-
   })
   .catch((err)=>{console.log(err)})
  }
- //----------------------handle delete-------------------------------------------------------
+ //----------------------handle delete---------------------------------------------------------
 const handleDelete=()=>{
     const id=e.productid
     deleteProd(id)
@@ -55,14 +45,13 @@ const handleDelete=()=>{
 const handleShow=()=>{
      setShow(!show)
 }
-//--------------------------handle the update of the product----------------*
+//--------------------------handle the update of the product----------------------------------
 
 const icrementQuanity=()=>{
   let inc=e.productquantity+1
      UpdateProd(id,{
       productquantity:inc,
     });
-
 }
 const decrementQuanity=()=>{
   let dec=e.productquantity-1
@@ -88,10 +77,9 @@ const decrementQuanity=()=>{
     navigate("/prod")
  }
  //------------------------------use effect---------------------------------------
- useEffect(() => {
+ useEffect(() =>{
     fetchData()
   },[tracker]);
-
 //---------------------------------rendering the admin interface---------------------------------
   return (
     <div>  
@@ -112,14 +100,13 @@ const decrementQuanity=()=>{
     <button className='btn' onClick={handleShow}>Update</button>
         {show ? (
           <div>
-            <input type="number" className='inp' placeholder='productprice'onChange={e=>setproductprice(e.target.value)}/><br />
-            <input type="number" className='inp' placeholder='productquantity'onChange={e=>setproductquantity(e.target.value)}/><br />
-            <input type="text" className='inp' placeholder='productcategory'onChange={e=>setproductcategory(e.target.value)}/><br />
+            <input type="number" className='inp' placeholder='productprice' defaultValue={e.productprice} onChange={e=>setproductprice(e.target.value)}/><br />
+            <input type="number" className='inp' placeholder='productquantity' defaultValue={e.productquantity}onChange={e=>setproductquantity(e.target.value)}/><br />
+            <input type="text" className='inp' placeholder='productcategory' defaultValue={e.productcategory} onChange={e=>setproductcategory(e.target.value)}/><br />
             <button className='btn' onClick={handleUpdate}>Confirm</button>
           </div> )  
           : <></>}
          </div>
-
     </div>
    
   )
