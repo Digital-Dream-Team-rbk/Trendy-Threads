@@ -33,9 +33,8 @@ function Prod() {
         productname:productname,
         productprice:productprice,
         productquantity:productquantity,
-        productcategory:productcategory
-
-    //   username:name,
+        productcategory:productcategory,
+          
      
     })
     .then(suc=>{console.log(suc)})

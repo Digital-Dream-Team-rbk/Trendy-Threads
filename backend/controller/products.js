@@ -23,15 +23,14 @@ const getOneProduct = async (req, res) => {
 
 const postOneProduct = async (req, res) => {
   try {
-    const imgPath=path.join(__dirname,`../backend/images/${req.file.filename}`)
-    const imgId= await uploadImage(imgPath)
+    const  image= await uploadImage(`${req.body.productimage}`)
     // Build the new product object to insert into the database
     const newProduct = {
       productname: req.body.productname,
       productprice: req.body.productprice,
       productquantity: req.body.productquantity,
       productcategory: req.body.productcategory,
-      productimage: imgId,
+      productimage:  image.secure_url,
       adminid: req.body.adminid,
     };
   productModel.postOneProduct(newProduct)
