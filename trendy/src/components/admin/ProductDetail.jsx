@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 function ProductDetail({e}) {
 const [show,setShow]=useState(false)
 const [productprice,setproductprice]=useState(0)
 const [productquantity,setproductquantity]=useState(0)
 const [productcategory,setproductcategory]=useState("")
+const [tracker,setTracker]=useState(false)
+const navigate = useNavigate();
 
 //-------------------------update request to the API
 const UpdateProd=(id,prod)=>{
@@ -26,6 +29,7 @@ const handleUpdate=()=>{
         productimage:e.productimage,
     }
     UpdateProd(id,prod)
+    setShow(!show)
 }
 //-------------------------delete request to the API
 const deleteProd=(id)=>{
@@ -35,16 +39,16 @@ const deleteProd=(id)=>{
   })
   .catch((err)=>{console.log(err)})
  }
- //handle delete 
+ //----------------------handle delete 
 const handleDelete=()=>{
     const id=e.productid
     deleteProd(id)
 }
-//handle the display of inputs
+//------------------------handle the display of inputs
 const handleShow=()=>{
      setShow(!show)
 }
-//handle the update of the product
+//--------------------------handle the update of the product
 const icrementQuanity=()=>{
      e.productquantity++
 }
@@ -59,11 +63,19 @@ const decrementQuanity=()=>{
  const decrementPrice=()=>{
    e.productprice--
  }
+ //----------------------------adding a product
+ const handleAdd=()=>{
+    navigate("/prod")
+ }
 
-
+//---------------------------------rendering the admin interface
   return (
     <div>  
-    <h4>{e.productname}</h4>
+     <div>
+       <button className='btn' onClick={handleAdd}>Add new Product</button>
+   </div>
+    <div>
+  <h4>{e.productname}</h4>
     <h4>{e.productprice}</h4>
     <button onClick={icrementPrice}>+</button>
     <button onClick={decrementPrice}>-</button>
@@ -78,9 +90,11 @@ const decrementQuanity=()=>{
             <input type="number" className='inp' placeholder='productprice'onChange={e=>setproductprice(e.target.value)}/><br />
             <input type="number" className='inp' placeholder='productquantity'onChange={e=>setproductquantity(e.target.value)}/><br />
             <input type="text" className='inp' placeholder='productcategory'onChange={e=>setproductcategory(e.target.value)}/><br />
-            <button className='btn' onClick={handleUpdate}> submit</button>
+            <button className='btn' onClick={handleUpdate}>Confirm</button>
           </div> )  
           : <></>}
+            </div>
+
     </div>
    
   )
