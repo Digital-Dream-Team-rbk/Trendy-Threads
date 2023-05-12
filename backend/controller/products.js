@@ -1,12 +1,6 @@
 const productModel = require("../models/product");
-const cloudinary = require("cloudinary").v2;
-// Configure Cloudinary with your account details
-cloudinary.config({
-  cloud_name: "dzs2vkmbq",
-  api_key: "885481975116747",
-  api_secret: "oUO_ImkJff7SBOG-8kVGejsd8W4",
-});
-
+const path=require('path')
+const {uploadImage}=require("../cloudinary")
 const getAllProducts = (req, res) => {
   productModel.getAllProducts((err, result) => {
     if (err) {
@@ -29,16 +23,15 @@ const getOneProduct = async (req, res) => {
 
 const postOneProduct = async (req, res) => {
   try {
-    // Upload the image URL to Cloudinary and get back the result
-    const image = await cloudinary.uploader.upload("../nike-air-force-1-low-white-grey-fd9763-101-2.jpg");
-
+    const imgPath=path.join(__dirname,`../backend/images/${req.file.filename}`)
+    const imgId=await uploadImage(imgPath)
     // Build the new product object to insert into the database
     const newProduct = {
       productname: req.body.productname,
       productprice: req.body.productprice,
       productquantity: req.body.productquantity,
       productcategory: req.body.productcategory,
-      productimage: image.secure_url,
+      productimage: imgId,
       adminid: req.body.adminid,
     };
 
