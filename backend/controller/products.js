@@ -1,11 +1,12 @@
 const productModel = require("../models/product");
 const connection = require("../connection");
 const cloudinary = require("cloudinary").v2;
+require("dotenv").config();
 // Configure Cloudinary with your account details
 cloudinary.config({
-  cloud_name: "dzs2vkmbq",
-  api_key: "885481975116747",
-  api_secret: "oUO_ImkJff7SBOG-8kVGejsd8W4",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const getAllProducts = (req, res) => {
