@@ -9,6 +9,8 @@ import { Routes, Route} from "react-router-dom";
 import HomeUser from './components/user/HomeUser.jsx';
 import Prod from './components/Prod';
 import WelcomePage from './components/WelcomePage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
