@@ -1,6 +1,13 @@
 const productModel = require("../models/product");
-const path=require('path')
-const {uploadImage}=require("../cloudinary")
+const connection = require("../connection");
+const cloudinary = require("cloudinary").v2;
+// Configure Cloudinary with your account details
+cloudinary.config({
+  cloud_name: "dzs2vkmbq",
+  api_key: "885481975116747",
+  api_secret: "oUO_ImkJff7SBOG-8kVGejsd8W4",
+});
+
 const getAllProducts = (req, res) => {
   productModel.getAllProducts((err, result) => {
     if (err) {
@@ -23,15 +30,17 @@ const getOneProduct = async (req, res) => {
 
 const postOneProduct = async (req, res) => {
   try {
-    const  image= await uploadImage(`${req.body.productimage}`)
+    // Upload the image URL to Cloudinary and get back the result
+    const image = await cloudinary.uploader.upload(`${req.body.productimage}`);
+
     // Build the new product object to insert into the database
     const newProduct = {
       productname: req.body.productname,
       productprice: req.body.productprice,
       productquantity: req.body.productquantity,
       productcategory: req.body.productcategory,
-      productimage:  image.secure_url,
-      adminid: req.body.adminid,
+      productimage: image.secure_url,
+      adminid: 2,
     };
   productModel.postOneProduct(newProduct)
 }
