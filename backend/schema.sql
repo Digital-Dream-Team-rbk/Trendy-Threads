@@ -73,6 +73,6 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`product_user` (
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-INSERT INTO `Trendy`.`admin` (`adminname`, `adminmail`, `adminpw`) VALUES ('John Doe', 'johndoe@example.com', 'password123');
-INSERT INTO `Trendy`.`users` (`username`, `userpw`, `useremail`) VALUES ('Jane Smith', 'password456', 'janesmith@example.com');
+INSERT INTO `Trendy`.`admin` (`adminname`, `adminmail`, `adminpw`) VALUES ('amrou', 'amrou@gmail.com', 'pass1234');
+INSERT INTO `Trendy`.`users` (`username`, `userpw`, `useremail`) VALUES ('sarhane', 'password456', 'sarhane@gmail.com');
 

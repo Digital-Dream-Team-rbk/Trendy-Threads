@@ -51,7 +51,7 @@ const handleDelete=()=>{
 const handleShow=()=>{
      setShow(!show)
 }
-//--------------------------handle the update of the product
+//--------------------------handle the update of the product----------------
 const icrementQuanity=()=>{
      e.productquantity++
 }

@@ -2,6 +2,7 @@ const productModel = require("../models/product");
 const connection = require("../connection");
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
+
 // Configure Cloudinary with your account details
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -40,7 +41,7 @@ const postOneProduct = async (req, res) => {
       productquantity: req.body.productquantity,
       productcategory: req.body.productcategory,
       productimage: image.secure_url,
-      adminid: 1,
+      adminid:1,
     };
   await productModel.postOneProduct(newProduct)
   console.log("added")
@@ -53,7 +54,7 @@ catch (err) {
 const updateOneProduct = (req, res) => {
   const id = req.params.id;
   const update = req.body;
-  productModel.updateOneProduct(id, update, (err, result) => {
+  productModel.updateOneProduct(id,update,(err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
