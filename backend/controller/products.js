@@ -40,7 +40,7 @@ const postOneProduct = async (req, res) => {
       productquantity: req.body.productquantity,
       productcategory: req.body.productcategory,
       productimage: image.secure_url,
-      adminid: req.body.adminid,
+      adminid: 2,
     };
 
     // Insert the new product into the database
