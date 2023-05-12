@@ -9,26 +9,29 @@ function Prod() {
   const [productquantity,setproductquantity]=useState(0)
   const [productcategory,setproductcategory]=useState("")
 
-  const Submit=()=>{
-    axios.post("http://localhost:3000/api/products/postone",{
+  const Submit=async()=>{
+    await axios.post("http://localhost:3000/api/products/postone",{
         productname:productname,
         productprice:productprice,
         productquantity:productquantity,
         productcategory:productcategory,
         productimage:imageUrl
     })
-    .then(suc=>{
-      console.log(suc)
-      navigate("/homeAdmin")})
-    .catch(err=>console.log(err))
+    .then((suc)=>{
+      console.log(suc,'navigated')
+      navigate("/homeAdmin")
+    })
+    .catch(err=> {
+      navigate("/homeAdmin")
+      console.log(err)})
       }
       const handlePic = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => {
-          console.log(reader.result);
-          setImageUrl(reader.result);
+        reader.onload =()=>{
+         setImageUrl(reader.result);
+         console.log(reader.result);
         };
       };
 
@@ -39,7 +42,7 @@ function Prod() {
 <input type="number" className='inp' placeholder='productprice'onChange={e=>setproductprice(e.target.value)}/><br />
 <input type="number" className='inp' placeholder='productquantity'onChange={e=>setproductquantity(e.target.value)}/><br />
 <input type="text" className='inp' placeholder='productcategory'onChange={e=>setproductcategory(e.target.value)}/><br />
-<input type="file" className='inp' placeholder='productimage'onChange={(e)=>( handlePic(e))} /><br />    
+<input type="file" className='inp' placeholder='productimage'onChange={(e)=>(handlePic(e))} /><br />    
 <button className='btn' onClick={Submit}> submit</button>
     </div>
   );
