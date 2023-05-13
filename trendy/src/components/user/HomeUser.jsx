@@ -34,7 +34,11 @@ const update =(event,id,quantity)=>{
         <img className='img' src={e.productimage}alt="" />
         <h4>{e.productname}</h4>
         <h4>{e.productprice}</h4>
-        <h4>{e.productquantity}</h4>
+        {e.productquantity > 0 ? (
+            <h4>{e.productquantity}</h4>
+          ) : (
+            <h4>Out of stock</h4>
+          )}
         <h4>{e.productcategory}</h4>
         <button className='btn' placeholder='Buy' onClick={(event)=>update(event,e.productid,e.productquantity)}>Buy</button>
         
