@@ -1,13 +1,12 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 function ProductDetail({e,fetchData}) {
 const [show,setShow]=useState(false)
 const [productprice,setproductprice]=useState(e.productprice)
 const [productquantity,setproductquantity]=useState(e.productquantity)
 const [productcategory,setproductcategory]=useState(e.productcategory)
 const [tracker,setTracker]=useState(false)
-const navigate = useNavigate();
+
 //-------------------------update request to the API-------------------------------
 
 const UpdateProd=(id,prod)=>{
@@ -72,43 +71,44 @@ const decrementQuanity=()=>{
       productprice:dec,
     });
  }
- //----------------------------adding a product------------------------------------
- const handleAdd=()=>{
-    navigate("/prod")
- }
  //------------------------------use effect---------------------------------------
  useEffect(() =>{
     fetchData()
   },[tracker]);
 //---------------------------------rendering the admin interface---------------------------------
   return (
-    <div>  
-     <div>
-       <button className='btn' onClick={handleAdd}>Add new Product</button>
-   </div>
-    <div>
-      <img src={e.productimage}  />
-  <h4>{e.productname}</h4>
-    <h4>{e.productprice}</h4>
-    <button onClick={icrementPrice}>+</button>
-    <button onClick={decrementPrice}>-</button>
-    <h4>{e.productquantity}</h4>
-    <button onClick={icrementQuanity}>+</button>
-    <button onClick={decrementQuanity}>-</button>
-    <h4>{e.productcategory}</h4>
-    <button className='btn'onClick={handleDelete}>Delete</button>
-    <button className='btn' onClick={handleShow}>Update</button>
+    <div class="card mb-3" style={{maxWidth: '540px'}}>
+ 
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src={e.productimage} class="img-fluid rounded-start" alt={e.productname} />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{e.productname}</h5>
+        <p class="card-text">{e.productdescription}</p>
+        <p class="card-text">Price: {e.productprice}</p>
+        <button onClick={icrementPrice} class="btn btn-sm btn-outline-primary">+</button>
+        <button onClick={decrementPrice} class="btn btn-sm btn-outline-primary">-</button>
+        <p class="card-text">Quantity: {e.productquantity}</p>
+        <button onClick={icrementQuanity} class="btn btn-sm btn-outline-primary">+</button>
+        <button onClick={decrementQuanity} class="btn btn-sm btn-outline-primary">-</button>
+        <p class="card-text">Category: {e.productcategory}</p>
+        <button onClick={handleDelete} class="btn btn-sm btn-outline-danger">Delete</button>
+        <button onClick={handleShow} class="btn btn-sm btn-outline-secondary">Update</button>
         {show ? (
           <div>
-            <input type="number" className='inp' placeholder='productprice' defaultValue={e.productprice} onChange={e=>setproductprice(e.target.value)}/><br />
-            <input type="number" className='inp' placeholder='productquantity' defaultValue={e.productquantity}onChange={e=>setproductquantity(e.target.value)}/><br />
-            <input type="text" className='inp' placeholder='productcategory' defaultValue={e.productcategory} onChange={e=>setproductcategory(e.target.value)}/><br />
-            <button className='btn' onClick={handleUpdate}>Confirm</button>
+            <input type="number" class="form-control my-2" placeholder='Price' defaultValue={e.productprice} onChange={e=>setproductprice(e.target.value)} />
+            <input type="number" class="form-control my-2" placeholder='Quantity' defaultValue={e.productquantity}onChange={e=>setproductquantity(e.target.value)} />
+            <input type="text" class="form-control my-2" placeholder='Category' defaultValue={e.productcategory} onChange={e=>setproductcategory(e.target.value)} />
+            <button class="btn btn-primary" onClick={handleUpdate}>Update</button>
           </div> )  
           : <></>}
-         </div>
+      </div>
     </div>
-   
+  </div>
+</div>
+
   )
 }
 
