@@ -1,17 +1,21 @@
 import React from 'react'
-
-function ProdAdmin({data}) {
+import ProductDetail from '../admin/ProductDetail'
+import { useNavigate } from 'react-router-dom';
+function ProdAdmin({data,fetchData}) {
+  const navigate = useNavigate();
+  const handleAdd=()=>{
+    navigate("/prod")
+ }
   return (
-    data.map((e)=>(
-      <div className='prod' key={e.productid}>
-        <img className='img' src={e.productimage} alt="" />
-        <h4>{e.productname}</h4>
-        <h4>{e.productprice}</h4>
-        <h4>{e.productquantity}</h4>
-        <h4>{e.productcategory}</h4>
-        <button className='btn'>Buy</button>
+    <div>
+        <button class="btn btn-primary" onClick={handleAdd}>Add new Product</button>
+         {data.map((e)=>(
+        <div className='prod' key={e.productid}>
+        <ProductDetail e={e} fetchData={fetchData}/>
         </div>
-    ))
+    ))}
+    </div>
+ 
   )
 }
 

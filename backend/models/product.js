@@ -41,7 +41,7 @@ const updateOneProduct = (id, update, callback) => {
 };
 
 const deleteOneProduct = (id, callback) => {
-  const sql = `DELETE FROM products WHERE productid = ${id}`;
+  const sql = `DELETE FROM products WHERE productid=${id}`;
   connection.query(sql, (err, result) => {
     callback(err, result);
   });

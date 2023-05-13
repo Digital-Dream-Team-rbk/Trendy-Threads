@@ -2,6 +2,7 @@ const productModel = require("../models/product");
 const connection = require("../connection");
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
+
 // Configure Cloudinary with your account details
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -33,7 +34,6 @@ const postOneProduct = async (req, res) => {
   try {
     // Upload the image URL to Cloudinary and get back the result
     const image = await cloudinary.uploader.upload(`${req.body.productimage}`);
-
     // Build the new product object to insert into the database
     const newProduct = {
       productname: req.body.productname,
@@ -41,9 +41,10 @@ const postOneProduct = async (req, res) => {
       productquantity: req.body.productquantity,
       productcategory: req.body.productcategory,
       productimage: image.secure_url,
-      adminid: 2,
+      adminid:1,
     };
-  productModel.postOneProduct(newProduct)
+  await productModel.postOneProduct(newProduct)
+  console.log("added")
 }
 catch (err) {
   res.status(500).send(err);
@@ -53,7 +54,7 @@ catch (err) {
 const updateOneProduct = (req, res) => {
   const id = req.params.id;
   const update = req.body;
-  productModel.updateOneProduct(id, update, (err, result) => {
+  productModel.updateOneProduct(id,update,(err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -64,11 +65,11 @@ const updateOneProduct = (req, res) => {
 
 const deleteOneProduct = (req, res) => {
   const id = req.params.id;
-  productModel.deleteOneProduct(id, (err, result) => {
+  productModel.deleteOneProduct(id,(err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).json(result);
+      res.status(204).json(result);
     }
   });
 };

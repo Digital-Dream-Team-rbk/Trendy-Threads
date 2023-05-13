@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
  const navigate=useNavigate();
-  const [email, setEmail] = useState('');
+ const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin =async ()=>{
@@ -31,7 +31,7 @@ const AdminLogin = () => {
       <input  type="email" className='inp' placeholder="Email" value={email}  onChange={(e) => setEmail(e.target.value)} />
       <input type="password" className='inp' placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
       <input type="button" className='btn' value="submit" onClick={handleLogin}/>
-      <button className='btn'onClick={(e)=>(navigate('/signUpAdmin'))}>Sign Up  </button>
+      <button className='btn'onClick={(e)=>(navigate('/signUpAdmin'))}>Sign Up </button>
     </div>
   );
 };

@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`admin` (
 CREATE TABLE IF NOT EXISTS `Trendy`.`products` (
   `productid` INT NOT NULL AUTO_INCREMENT,
   `productname` VARCHAR(255) NOT NULL,
-  `productprice` DECIMAL(10,2) NOT NULL,
+  `productprice` INT NOT NULL,
   `productquantity` INT NOT NULL,
   `productcategory` VARCHAR(255) NOT NULL,
   `productimage` VARCHAR(400) NOT NULL,
@@ -69,7 +69,10 @@ CREATE TABLE IF NOT EXISTS `Trendy`.`product_user` (
     REFERENCES `Trendy`.`users` (`userid`)
 );
 
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+INSERT INTO `Trendy`.`admin` (`adminname`, `adminmail`, `adminpw`) VALUES ('amrou', 'amrou@gmail.com', 'pass1234');
+INSERT INTO `Trendy`.`users` (`username`, `userpw`, `useremail`) VALUES ('sarhane', 'password456', 'sarhane@gmail.com');
 

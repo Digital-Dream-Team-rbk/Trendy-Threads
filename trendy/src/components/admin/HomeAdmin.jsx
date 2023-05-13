@@ -31,7 +31,7 @@ function HomeAdmin() {
   return (
     <div>
       <UsersAdmin data={users}/>
-      <ProdAdmin data={products}/>
+      <ProdAdmin fetchData={fetchData} data={products}/>
     </div>
   )
 }
