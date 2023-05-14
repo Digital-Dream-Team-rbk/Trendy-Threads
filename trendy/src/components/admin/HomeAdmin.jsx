@@ -29,8 +29,8 @@ function HomeAdmin() {
   },[]);
   
   return (
-    <div>
-      <UsersAdmin data={users}/>
+    <div  className='container' >
+         <  UsersAdmin data={users}/> 
       <ProdAdmin fetchData={fetchData} data={products}/>
     </div>
   )

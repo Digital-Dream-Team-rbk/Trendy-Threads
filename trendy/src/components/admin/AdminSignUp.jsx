@@ -26,8 +26,9 @@ const AdminSignup=()=> {
     }
       console.log(email)
   return(
-    <div className='sign'>
+    <div className='sign' >
       <h3>Sign up Admin</h3>
+  
         <input type="text" className='inp' placeholder='User Name'onChange={e=>setName(e.target.value)}/><br />
         <input type="password" className='inp' placeholder='User Password'onChange={e=>setPassword(e.target.value)}/><br />
        <input type="email" className='inp' placeholder='User E-mail'onChange={e=>setEmail(e.target.value)}/><br />

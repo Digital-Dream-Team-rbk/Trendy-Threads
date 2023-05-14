@@ -28,14 +28,14 @@ const update =(event,id,quantity)=>{
   console.log(data);
 
   return (
-    <div>
+    <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
         {data.map((e)=>
         <div className='prod' key={e.productid}>
-        <img className='img' src={e.productimage}alt="" />
-        <h4>{e.productname}</h4>
-        <h4>{e.productprice}</h4>
-        <h4>{e.productquantity}</h4>
-        <h4>{e.productcategory}</h4>
+        <img className='img' src={e.productimage} alt="" />
+        <h4 > name :{e.productname}</h4>
+        <h4 > price : {e.productprice}</h4>
+        <h4 > quantity : {e.productquantity}</h4>
+        <h4 >category : {e.productcategory}</h4>
         <button className='btn' placeholder='Buy' onClick={(event)=>update(event,e.productid,e.productquantity)}>Buy</button>
         
         </div>

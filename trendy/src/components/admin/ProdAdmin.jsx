@@ -6,14 +6,20 @@ function ProdAdmin({data,fetchData}) {
   const handleAdd=()=>{
     navigate("/prod")
  }
-  return (
-    <div>
-        <button class="btn btn-primary" onClick={handleAdd}>Add new Product</button>
-         {data.map((e)=>(
-        <div className='prod' key={e.productid}>
-        <ProductDetail e={e} fetchData={fetchData}/>
+  return (       
+    <div  className='container' >
+
+    <button className="btn"   onClick={handleAdd} >Add new Product</button>
+
+    <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' , width:700,
+  height:800}} >
+         {data.map((e,i)=>(
+        <div className='prod' key={e.productid}  >
+        <ProductDetail e={e} fetchData={fetchData} key={i}/>
         </div>
+
     ))}
+    </div>
     </div>
  
   )
