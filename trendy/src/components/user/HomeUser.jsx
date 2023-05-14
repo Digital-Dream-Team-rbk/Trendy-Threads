@@ -28,7 +28,7 @@ const update =(event,id,quantity)=>{
   console.log(data);
 
   return (
-    <div>
+    <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
         {data.map((e)=>
         <div className='prod' key={e.productid}>
         <img className='img' src={e.productimage}alt="" />
