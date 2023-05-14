@@ -8,7 +8,7 @@ import HomeAdmin from './components/admin/HomeAdmin'
 import { Routes, Route} from "react-router-dom";
 import HomeUser from './components/user/HomeUser.jsx';
 import Prod from './components/admin/Prod';
-import WelcomePage from './components/WelcomePage';
+import WelcomePage from './components/wolcome/WelcomePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
